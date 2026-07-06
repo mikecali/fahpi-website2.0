@@ -15,7 +15,6 @@
   --border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.15);
   --red-ph:#d62d20;--blue-ph:#0038a8;
   --r:8px;--rl:14px;
-  --green:#2e7d52;--green-light:#3a9e68;--green-pale:#e8f5ee;--green-mid:#1a5c3a;
 }
 html{scroll-behavior:smooth}
 body{font-family:"DM Sans",system-ui,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--cream)}
@@ -66,7 +65,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-
 section{padding:5rem 2.5rem}
 .inner{max-width:900px;margin:0 auto}
 .sec-eye{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
-.sec-eye.green{color:var(--green)}
 .sec-head{font-family:"Playfair Display",serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:1rem}
 .sec-sub{font-size:1rem;color:var(--muted);max-width:580px;line-height:1.7;margin-bottom:3rem}
 
@@ -150,19 +148,6 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
   .board-featured{flex-direction:column;text-align:center}
   .footer-inner{flex-direction:column}
 }
-
-/* COLLABORATE */
-.collab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-.collab-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--rl);padding:2rem;display:flex;flex-direction:column;gap:.75rem;transition:.2s}
-.collab-card:hover{border-color:var(--green);box-shadow:0 4px 24px rgba(46,125,82,.1)}
-.collab-card-wide{grid-column:1/-1}
-.collab-icon{width:52px;height:52px;border-radius:var(--rl);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-.collab-title{font-size:1.1rem;font-weight:600;color:var(--navy)}
-.collab-sub{font-size:13px;font-weight:500;color:var(--green);text-transform:uppercase;letter-spacing:.06em}
-.collab-body{font-size:14.5px;color:var(--muted);line-height:1.65;flex:1}
-.collab-btn{display:inline-block;margin-top:.5rem;padding:9px 20px;background:var(--white);border:1.5px solid var(--green);color:var(--green);border-radius:var(--r);font-size:13.5px;font-weight:600;text-decoration:none;transition:.15s}
-.collab-btn:hover{background:var(--green);color:#fff}
-@media(max-width:700px){.collab-grid{grid-template-columns:1fr}.collab-card-wide{grid-column:1}}
 </style>
 </head>
 <body>
@@ -177,7 +162,8 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
     <li><a href="#" id="nav-about" onclick="showPage('about');return false;">Who we are</a></li>
     <li><a href="#" id="nav-updates" onclick="showPage('updates');return false;">Updates</a></li>
     <li><a href="#">Medical corner</a></li>
-    <li><a id="nav-collaborate" onclick="showPage('collaborate');return false;">Collaborate</a></li>
+    <li><a href="#">Jobs</a></li>
+    <li><a href="#">Collaborate</a></li>
     <li><a href="#" class="nav-cta">Join FAHPi</a></li>
   </ul>
 </nav>
@@ -322,77 +308,6 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
 </div>
 
 <!-- LIGHTBOX -->
-
-<!-- COLLABORATE -->
-<div id="page-collaborate" class="page">
-  <div class="hero" style="background:linear-gradient(135deg,var(--navy) 0%,var(--green-mid) 100%)">
-    <div class="hero-stripe"></div>
-    <div class="hero-inner">
-      <div class="eyebrow">Work with us</div>
-      <h1>Collaborate <em>with us</em></h1>
-      <p class="hero-lead">Together we are stronger! We believe that for every goal achieved, no matter how big or small, a collective effort is behind it. We look forward to working with you!</p>
-    </div>
-  </div>
-
-  <section style="background:var(--white);padding:5rem 2.5rem">
-    <div class="inner">
-      <div class="collab-grid">
-
-        <div class="collab-card">
-          <div class="collab-icon" style="background:var(--green-pale);color:var(--green)">&#x1F91D;</div>
-          <h3 class="collab-title">Volunteer</h3>
-          <p class="collab-sub">Do you have some spare time?</p>
-          <p class="collab-body">We welcome retired and current health professionals who can join us through volunteering into one of our charitable and fun activities!</p>
-          <a href="mailto:fahpinc@gmail.com" class="collab-btn">Get involved</a>
-        </div>
-
-        <div class="collab-card">
-          <div class="collab-icon" style="background:#f0f4fb;color:var(--navy)">&#x1F4E2;</div>
-          <h3 class="collab-title">Advertise</h3>
-          <p class="collab-sub">Do you have a trade or profession to advertise?</p>
-          <p class="collab-body">We welcome corporate partners and professionals aligned with our health advocacies to advertise your product or service on our site. Terms and conditions apply.</p>
-          <a href="mailto:fahpinc@gmail.com" class="collab-btn">Enquire now</a>
-        </div>
-
-        <div class="collab-card">
-          <div class="collab-icon" style="background:var(--gold-pale);color:var(--gold)">&#x2B50;</div>
-          <h3 class="collab-title">Sponsorship</h3>
-          <p class="collab-sub">Be a sponsor!</p>
-          <p class="collab-body">Your company or you as an individual can help make our activities and events sustainable by becoming a sponsor. We look forward to hearing from you!</p>
-          <a href="mailto:fahpinc@gmail.com" class="collab-btn">Become a sponsor</a>
-        </div>
-
-        <div class="collab-card">
-          <div class="collab-icon" style="background:var(--green-pale);color:var(--green)">&#x2764;&#xFE0F;</div>
-          <h3 class="collab-title">Donate</h3>
-          <p class="collab-sub">Donate for a good cause.</p>
-          <p class="collab-body">We are a not-for-profit association that always looks for ways to support and reach out to those who need it most in the context of Health. Your donation will be greatly appreciated!</p>
-          <a href="mailto:fahpinc@gmail.com" class="collab-btn">Make a donation</a>
-        </div>
-
-        <div class="collab-card collab-card-wide">
-          <div class="collab-icon" style="background:#f0f4fb;color:var(--navy)">&#x1F4EC;</div>
-          <h3 class="collab-title">Suggestion box</h3>
-          <p class="collab-sub">Have an idea or feedback?</p>
-          <p class="collab-body">We love hearing from our community. Reach out to us with your suggestions, ideas, or general enquiries and we will get back to you as soon as possible.</p>
-          <a href="mailto:fahpinc@gmail.com" class="collab-btn">fahpinc@gmail.com</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div style="background:var(--green-mid);color:#fff;padding:4.5rem 2.5rem;text-align:center">
-    <div class="inner">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;margin-bottom:.75rem">Get in touch</h2>
-      <p style="color:rgba(255,255,255,.75);margin-bottom:.5rem;font-size:15px">&#x1F4CD; Canberra ACT, Australia</p>
-      <p style="color:rgba(255,255,255,.75);margin-bottom:.5rem;font-size:15px">&#x2709;&#xFE0F; <a href="mailto:fahpinc@gmail.com" style="color:var(--gold-light)">fahpinc@gmail.com</a></p>
-      <p style="color:rgba(255,255,255,.75);margin-bottom:2rem;font-size:15px">&#x1F4CB; ABN 71 370 519 961</p>
-      <a href="mailto:fahpinc@gmail.com" class="btn btn-gold">Contact us</a>
-    </div>
-  </div>
-</div>
-
 <div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
   <button class="lightbox-close">&#x2715;</button>
   <img id="lightbox-img" src="" alt="">
