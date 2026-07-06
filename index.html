@@ -331,7 +331,9 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
 
 <script>
 // ── Config ───────────────────────────────────────────────
-var API = 'save.php';
+var BIN_ID  = "6a4b77bada38895dfe343334";
+var API_KEY = "$2a$10$dxh/R62PmxmWxujp3i7yzeNtk69aJsz7/eB25ielkpEy3sStY.3H2";
+var API_URL = "https://api.jsonbin.io/v3/b/" + BIN_ID;
 
 var STATIC = [
   {category:'News', title:'Philippine Independence Day flag raising for Dr Jose Rizal', date:'12 June 2026'},
@@ -365,7 +367,8 @@ function showPage(id) {
 // ── API ───────────────────────────────────────────────────
 function fetchPosts(cb) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', API);
+  xhr.open('GET', API_URL + '?meta=false');
+  xhr.setRequestHeader('X-Master-Key', API_KEY);
   xhr.onload = function() {
     try { cb(JSON.parse(xhr.responseText)); }
     catch(e) { cb([]); }

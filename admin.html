@@ -243,7 +243,9 @@ tr:hover td{background:#fafafa}
 </div>
 
 <script>
-var API = 'save.php';
+var BIN_ID  = "6a4b77bada38895dfe343334";
+var API_KEY = "$2a$10$dxh/R62PmxmWxujp3i7yzeNtk69aJsz7/eB25ielkpEy3sStY.3H2";
+var API_URL = "https://api.jsonbin.io/v3/b/" + BIN_ID;
 var PW_KEY = 'fahpi_pw';
 var AUTH_KEY = 'fahpi_auth';
 var photos = [];
@@ -296,7 +298,8 @@ function goTab(id) {
 // ── API ───────────────────────────────────────────────────
 function apiGet(cb) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', API);
+  xhr.open('GET', API_URL + '?meta=false');
+  xhr.setRequestHeader('X-Master-Key', API_KEY);
   xhr.onload = function() {
     try { cb(null, JSON.parse(xhr.responseText)); }
     catch(e) { cb(e, []); }
@@ -306,23 +309,33 @@ function apiGet(cb) {
 }
 
 function apiPost(data, cb) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', API);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onload = function() {
-    try { cb(null, JSON.parse(xhr.responseText)); }
-    catch(e) { cb(e, {}); }
-  };
-  xhr.onerror = function() { cb(new Error('Network error'), {}); };
-  xhr.send(JSON.stringify(data));
+  // JSONBin: read current posts, prepend new post, write back
+  apiGet(function(err, posts) {
+    if (err) posts = [];
+    data.id = Date.now().toString();
+    posts.unshift(data);
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', API_URL);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-Master-Key', API_KEY);
+    xhr.onload = function() { cb(null, {ok: true}); };
+    xhr.onerror = function() { cb(new Error('Network error'), {}); };
+    xhr.send(JSON.stringify(posts));
+  });
 }
 
 function apiDelete(id, cb) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('DELETE', API + '?id=' + id);
-  xhr.onload = function() { cb(null); };
-  xhr.onerror = function() { cb(new Error('Network error')); };
-  xhr.send();
+  apiGet(function(err, posts) {
+    if (err) { cb(err); return; }
+    var filtered = posts.filter(function(p) { return p.id !== id; });
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', API_URL);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-Master-Key', API_KEY);
+    xhr.onload = function() { cb(null); };
+    xhr.onerror = function() { cb(new Error('Network error')); };
+    xhr.send(JSON.stringify(filtered));
+  });
 }
 
 // ── Dates ─────────────────────────────────────────────────
@@ -394,7 +407,7 @@ function publishPost() {
   var err     = document.getElementById('np-err');
   if (!title || !body) { err.style.display='block'; return; }
   err.style.display = 'none';
-  var photoData = photos.map(function(p){ return p.data; });
+  var photoData = photos.map(function(p){ return p.data; }); // base64 stored directly in JSONBin
   apiPost({title:title, category:cat, date:formatDate(dateVal), body:body, photos:photoData}, function(e, res) {
     if (!e && res.ok) {
       ok.style.display = 'block';
@@ -504,16 +517,12 @@ function exportData() {
 
 function clearAll() {
   if (!confirm('Delete ALL updates? This cannot be undone.')) return;
-  apiGet(function(err, posts) {
-    var done = 0;
-    if (!posts.length) return;
-    posts.forEach(function(p) {
-      apiDelete(p.id, function() {
-        done++;
-        if (done === posts.length) { loadDashboard(); loadTable(); }
-      });
-    });
-  });
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', API_URL);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('X-Master-Key', API_KEY);
+  xhr.onload = function() { loadDashboard(); loadTable(); };
+  xhr.send(JSON.stringify([]));
 }
 
 // ── Boot ──────────────────────────────────────────────────
