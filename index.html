@@ -38,7 +38,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-
 .page.active{display:block}
 
 /* HERO */
-.hero{background:var(--navy);color:#fff;padding:5rem 2.5rem;position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--green-mid) 100%);color:#fff;padding:5rem 2.5rem;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,150,42,.12),transparent 60%);pointer-events:none}
 .hero-stripe{position:absolute;top:0;right:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--red-ph) 50%,var(--blue-ph) 50%)}
 .hero-inner{max-width:820px;margin:0 auto;position:relative}
@@ -163,6 +163,10 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
 .collab-btn{display:inline-block;margin-top:.5rem;padding:9px 20px;background:var(--white);border:1.5px solid var(--green);color:var(--green);border-radius:var(--r);font-size:13.5px;font-weight:600;text-decoration:none;transition:.15s}
 .collab-btn:hover{background:var(--green);color:#fff}
 @media(max-width:700px){.collab-grid{grid-template-columns:1fr}.collab-card-wide{grid-column:1}}
+
+@media(max-width:700px){
+  #page-join .inner > div{grid-template-columns:1fr !important}
+}
 </style>
 </head>
 <body>
@@ -178,7 +182,7 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
     <li><a href="#" id="nav-updates" onclick="showPage('updates');return false;">Updates</a></li>
     <li><a href="#">Medical corner</a></li>
     <li><a id="nav-collaborate" onclick="showPage('collaborate');return false;">Collaborate</a></li>
-    <li><a href="#" class="nav-cta">Join FAHPi</a></li>
+    <li><a id="nav-join" class="nav-cta" onclick="showPage('join');return false;">Join FAHPi</a></li>
   </ul>
 </nav>
 
@@ -191,7 +195,7 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
       <h1>Advancing health,<br><em>bridging communities</em></h1>
       <p class="hero-lead">FAHPi supports Filipino Australian health professionals practising across Canberra and the ACT — through professional development, advocacy, and a shared commitment to health equity.</p>
       <div class="hero-actions">
-        <a href="#" class="btn btn-gold">Join FAHPi</a>
+        <a href="#" class="btn btn-gold" onclick="showPage('join');return false;">Join FAHPi</a>
         <a href="#" class="btn btn-outline" onclick="showPage('about');return false;">Who we are</a>
       </div>
     </div>
@@ -243,7 +247,7 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
   <div class="cta">
     <h2>Be part of the community</h2>
     <p>Join a credible and growing network of Filipino Australian health professionals across the ACT region.</p>
-    <a href="#" class="btn btn-gold">Register as a member</a>
+    <a href="#" class="btn btn-gold" onclick="showPage('join');return false;">Register as a member</a>
   </div>
 </div>
 
@@ -300,7 +304,7 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
   <div class="cta">
     <h2>Ready to be counted?</h2>
     <p>Help us build a credible database that serves the future interests of the Filipino Australian health community.</p>
-    <a href="#" class="btn btn-gold">Join FAHPi today</a>
+    <a href="#" class="btn btn-gold" onclick="showPage('join');return false;">Join FAHPi today</a>
   </div>
 </div>
 
@@ -325,7 +329,7 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
 
 <!-- COLLABORATE -->
 <div id="page-collaborate" class="page">
-  <div class="hero" style="background:linear-gradient(135deg,var(--navy) 0%,var(--green-mid) 100%)">
+  <div class="hero">
     <div class="hero-stripe"></div>
     <div class="hero-inner">
       <div class="eyebrow">Work with us</div>
@@ -390,6 +394,75 @@ footer{background:#060f1a;color:rgba(255,255,255,.5);padding:3rem 2.5rem}
       <p style="color:rgba(255,255,255,.75);margin-bottom:2rem;font-size:15px">&#x1F4CB; ABN 71 370 519 961</p>
       <a href="mailto:fahpinc@gmail.com" class="btn btn-gold">Contact us</a>
     </div>
+  </div>
+</div>
+
+
+<!-- JOIN PAGE -->
+<div id="page-join" class="page">
+  <div class="hero">
+    <div class="hero-stripe"></div>
+    <div class="hero-inner">
+      <div class="eyebrow">Membership</div>
+      <h1>Join <em>FAHPi</em></h1>
+      <p class="hero-lead">Be counted and help us build a credible database so we can help the Filipino Australian health community&rsquo;s future interests.</p>
+    </div>
+  </div>
+
+  <section style="background:var(--white);padding:5rem 2.5rem">
+    <div class="inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+
+        <div>
+          <div class="sec-eye">Why join?</div>
+          <h2 class="sec-head">Be part of something bigger</h2>
+          <p style="color:var(--muted);line-height:1.75;margin-bottom:1.5rem">FAHPi is a group of Filipino Australian health professionals committed to supporting all members practising within Canberra and the surrounding ACT region — ensuring the continuous development and enrichment of their respective disciplines.</p>
+          <p style="color:var(--muted);line-height:1.75;margin-bottom:2rem">This is to start building up our database and information on how many health professionals are working in certain locations or industries, what speciality or demographics our workforce represents. We cannot source this information without your consent — and this data is very important when we plan for future policy, projects, events and advocacy campaigns.</p>
+
+          <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <span style="font-size:1.25rem;flex-shrink:0">&#x1F4CB;</span>
+              <div><strong style="color:var(--navy);display:block;margin-bottom:2px">Policy &amp; advocacy</strong><span style="font-size:14px;color:var(--muted)">Your data helps us represent Filipino Australian health professionals in policy discussions.</span></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <span style="font-size:1.25rem;flex-shrink:0">&#x1F91D;</span>
+              <div><strong style="color:var(--navy);display:block;margin-bottom:2px">Community &amp; networking</strong><span style="font-size:14px;color:var(--muted)">Connect with fellow Filipino Australian health professionals across the ACT.</span></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <span style="font-size:1.25rem;flex-shrink:0">&#x1F393;</span>
+              <div><strong style="color:var(--navy);display:block;margin-bottom:2px">Professional development</strong><span style="font-size:14px;color:var(--muted)">Access events, workshops, and opportunities to grow in your discipline.</span></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <span style="font-size:1.25rem;flex-shrink:0">&#x2764;&#xFE0F;</span>
+              <div><strong style="color:var(--navy);display:block;margin-bottom:2px">Give back</strong><span style="font-size:14px;color:var(--muted)">Help shape the future of the Filipino Australian health community.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="background:var(--green-pale);border:1px solid rgba(46,125,82,.2);border-radius:var(--rl);padding:2.5rem;text-align:center">
+            <div style="font-size:3rem;margin-bottom:1rem">&#x1F4DD;</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--navy);margin-bottom:.75rem">Ready to join?</h3>
+            <p style="font-size:14.5px;color:var(--muted);line-height:1.7;margin-bottom:1.5rem">Fill in the application form and complete your annual membership payment to our ANZ account via Personal or Online Banking.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYCY0rtBI-35UNpaXAbWtRZlmkYDGEp2W_xD-gIKcLcmYXVg/viewform" target="_blank" class="btn btn-gold" style="display:block;text-align:center;margin-bottom:1rem">Complete application form &#x2197;</a>
+            <p style="font-size:12px;color:var(--muted)">Opens Google Forms in a new tab</p>
+          </div>
+
+          <div style="background:var(--cream);border:1px solid var(--border);border-radius:var(--rl);padding:1.5rem;margin-top:1.25rem">
+            <div class="sec-eye" style="margin-bottom:.5rem">Payment details</div>
+            <p style="font-size:14px;color:var(--muted);line-height:1.7">After submitting the form, complete your annual membership payment via your Personal or Online Banking to our <strong style="color:var(--navy)">ANZ account</strong>.</p>
+            <p style="font-size:13px;color:var(--light);margin-top:.75rem">Contact <a href="mailto:fahpinc@gmail.com" style="color:var(--green)">fahpinc@gmail.com</a> for payment details.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div style="background:var(--green-mid);color:#fff;padding:4.5rem 2.5rem;text-align:center">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;margin-bottom:.75rem">Questions about membership?</h2>
+    <p style="color:rgba(255,255,255,.75);margin-bottom:2rem;font-size:15px">We&rsquo;re happy to help. Reach out to us anytime.</p>
+    <a href="mailto:fahpinc@gmail.com" class="btn btn-gold">fahpinc@gmail.com</a>
   </div>
 </div>
 
